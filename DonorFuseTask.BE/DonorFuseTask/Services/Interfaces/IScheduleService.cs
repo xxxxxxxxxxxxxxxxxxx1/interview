@@ -10,5 +10,5 @@ public interface IScheduleService
     Task UpdateScheduleAsync(int id, DateTime startDate, DateTime endDate, decimal amount);
     Task DeleteScheduleAsync(int id);
     Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId);
-    Task<decimal> CalculateScheduleDonationsAmountAsync(int scheduleId);
+    Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId);
 }

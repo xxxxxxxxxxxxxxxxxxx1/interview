@@ -61,8 +61,9 @@ public class ScheduleRepository : IScheduleRepository
         throw new NotImplementedException();
     }
 
-    public Task<decimal> CalculateScheduleDonationsAmountAsync(int scheduleId)
+    public async Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId, DateTime donationDay)
     {
-        throw new NotImplementedException();
+        return await _dbContext.GetDonorScheduledBalance(donorId, donationDay);
     }
+    
 }

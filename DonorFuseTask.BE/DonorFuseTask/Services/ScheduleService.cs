@@ -31,11 +31,6 @@ public class ScheduleService : IScheduleService
             throw new Exception("Start date cannot be greater than end date");
         }
         
-        if(startDate < DateTime.Now)
-        {
-            throw new Exception("Start date cannot be in the past");
-        }
-        
         if (amount <= 0)
         {
             throw new Exception("Amount must be greater than 0");
@@ -59,11 +54,6 @@ public class ScheduleService : IScheduleService
             throw new Exception("Start date cannot be greater than end date");
         }
         
-        if(startDate < DateTime.Now)
-        {
-            throw new Exception("Start date cannot be in the past");
-        }
-        
         if (amount <= 0)
         {
             throw new Exception("Amount must be greater than 0");
@@ -82,8 +72,11 @@ public class ScheduleService : IScheduleService
         return _scheduleRepository.GetSchedulesByDonorIdAsync(donorId);
     }
 
-    public Task<decimal> CalculateScheduleDonationsAmountAsync(int scheduleId)
+    public Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId)
     {
-        return _scheduleRepository.CalculateScheduleDonationsAmountAsync(scheduleId);
+        var dateTimeNow = DateTime.Now;
+        var donationDay = new DateTime(dateTimeNow.Year, dateTimeNow.Month, 1);
+        
+        return _scheduleRepository.CalculateScheduleDonationsAmountAsync(donorId, donationDay);
     }
 }

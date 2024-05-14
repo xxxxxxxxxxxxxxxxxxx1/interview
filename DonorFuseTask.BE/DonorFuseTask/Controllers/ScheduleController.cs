@@ -77,4 +77,11 @@ public class ScheduleController : ControllerBase
         var schedules = await _scheduleService.GetSchedulesByDonorIdAsync(donorId);
         return Ok(schedules);
     }
+    
+    [HttpGet("donor/{donorId}/amount")]
+    public async Task<IActionResult> GetDonorScheduledBalance(int donorId)
+    {
+        var amount = await _scheduleService.CalculateScheduleDonationsAmountAsync(donorId);
+        return Ok(amount);
+    }
 }
