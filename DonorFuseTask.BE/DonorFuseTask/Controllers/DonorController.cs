@@ -60,4 +60,18 @@ public class DonorController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        try
+        {
+            await _donorService.DeleteAsync(id);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
