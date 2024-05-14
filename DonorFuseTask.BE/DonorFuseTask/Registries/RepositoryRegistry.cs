@@ -8,5 +8,7 @@ public static class RepositoryRegistry
     public static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IDonorRepository, DonorRepository>();
+        services.AddScoped<IDonationRepository, DonationRepository>();
+        services.AddScoped<IScheduleRepository, ScheduleRepository>();
     }
 }
