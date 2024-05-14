@@ -13,22 +13,22 @@ public class DonorService : IDonorService
         _donorRepository = donorRepository;
     }
 
-    public async Task<IEnumerable<Donor>> GetAllAsync()
+    public async Task<IEnumerable<Donor>> GetAllDonorsAsync()
     {
-        return await _donorRepository.GetAllAsync();
+        return await _donorRepository.GetAllDonorsAsync();
     }
 
-    public async Task<Donor?> GetByIdAsync(int id)
+    public async Task<Donor?> GetDonorByIdAsync(int id)
     {
-        return await _donorRepository.GetByIdAsync(id);
+        return await _donorRepository.GetDonorByIdAsync(id);
     }
 
-    public async Task CreateAsync(Donor donor)
+    public async Task AddDonorAsync(Donor donor)
     {
-        await _donorRepository.CreateAsync(donor);
+        await _donorRepository.AddDonorAsync(donor);
     }
 
-    public async Task UpdateAsync(int id, string firstName, string lastName, string emailAddress)
+    public async Task UpdateDonorAsync(int id, string firstName, string lastName, string emailAddress)
     {
         if (string.IsNullOrWhiteSpace(firstName))
             throw new Exception("First Name Cannot Be Empty");
@@ -39,11 +39,11 @@ public class DonorService : IDonorService
         if (string.IsNullOrWhiteSpace(emailAddress))
             throw new Exception("Email Address Cannot Be Empty");
         
-        await _donorRepository.UpdateAsync(id, firstName, lastName, emailAddress);
+        await _donorRepository.UpdateDonorAsync(id, firstName, lastName, emailAddress);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteDonorAsync(int id)
     {
-        await _donorRepository.DeleteAsync(id);
+        await _donorRepository.DeleteDonorAsync(id);
     }
 }

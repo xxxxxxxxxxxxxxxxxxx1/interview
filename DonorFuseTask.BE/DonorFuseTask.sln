@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonorFuseTask", "DonorFuseTask\DonorFuseTask.csproj", "{6BB8A889-412F-46BC-9B14-BBC71480A566}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonorFuseTask.Tests", "DonorFuseTask.Tests\DonorFuseTask.Tests.csproj", "{EC70378D-DC28-4BAE-8DDE-A0FC74818302}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{6BB8A889-412F-46BC-9B14-BBC71480A566}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BB8A889-412F-46BC-9B14-BBC71480A566}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BB8A889-412F-46BC-9B14-BBC71480A566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC70378D-DC28-4BAE-8DDE-A0FC74818302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC70378D-DC28-4BAE-8DDE-A0FC74818302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC70378D-DC28-4BAE-8DDE-A0FC74818302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC70378D-DC28-4BAE-8DDE-A0FC74818302}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

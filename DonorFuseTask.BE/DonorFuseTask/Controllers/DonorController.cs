@@ -17,16 +17,16 @@ public class DonorController : ControllerBase
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllDonorsAsync()
     {
-        var donors = await _donorService.GetAllAsync();
+        var donors = await _donorService.GetAllDonorsAsync();
         return Ok(donors);
     }
     
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id)
+    public async Task<IActionResult> GetDonorByIdAsync(int id)
     {
-        var donor = await _donorService.GetByIdAsync(id);
+        var donor = await _donorService.GetDonorByIdAsync(id);
         if (donor == null)
             return NotFound();
         
@@ -34,25 +34,25 @@ public class DonorController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] DonorInputDTO donorInput)
+    public async Task<IActionResult> AddDonorAsync([FromBody] DonorInputDTO donorInput)
     {
-        var donor = new Donor()
+        var donor = new Donor
         {
             FirstName = donorInput.FirstName,
             LastName = donorInput.LastName,
             EmailAddress = donorInput.EmailAddress
         };
         
-        await _donorService.CreateAsync(donor);
+        await _donorService.AddDonorAsync(donor);
         return Ok();
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(int id, [FromBody] DonorInputDTO donorInout)
+    public async Task<IActionResult> UpdateDonorAsync(int id, [FromBody] DonorInputDTO donorInout)
     {
         try
         {
-            await _donorService.UpdateAsync(id, donorInout.FirstName, donorInout.LastName, donorInout.EmailAddress);
+            await _donorService.UpdateDonorAsync(id, donorInout.FirstName, donorInout.LastName, donorInout.EmailAddress);
             return Ok();
         }
         catch (Exception e)
@@ -62,11 +62,11 @@ public class DonorController : ControllerBase
     }
     
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAsync(int id)
+    public async Task<IActionResult> DeleteDonorAsync(int id)
     {
         try
         {
-            await _donorService.DeleteAsync(id);
+            await _donorService.DeleteDonorAsync(id);
             return Ok();
         }
         catch (Exception e)

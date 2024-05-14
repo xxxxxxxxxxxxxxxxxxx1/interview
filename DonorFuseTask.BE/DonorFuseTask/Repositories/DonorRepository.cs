@@ -15,25 +15,25 @@ public class DonorRepository : IDonorRepository
         _dbContext = dbContext;
     }
 
-    public async Task<IEnumerable<Donor>> GetAllAsync()
+    public async Task<IEnumerable<Donor>> GetAllDonorsAsync()
     {
         return await _dbContext.Donors.ToListAsync();
     }
 
-    public async Task<Donor?> GetByIdAsync(int id)
+    public async Task<Donor?> GetDonorByIdAsync(int id)
     {
         return await _dbContext.Donors.FirstOrDefaultAsync(donor => donor.Id == id);
     }
 
-    public async Task CreateAsync(Donor donor)
+    public async Task AddDonorAsync(Donor donor)
     {
         await _dbContext.Donors.AddAsync(donor);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(int id, string firstName, string lastName, string emailAddress)
+    public async Task UpdateDonorAsync(int id, string firstName, string lastName, string emailAddress)
     {
-        var donor = await GetByIdAsync(id);
+        var donor = await GetDonorByIdAsync(id);
         if (donor == null)
             throw new Exception("No Donor Found With Given Id");
 
@@ -44,9 +44,9 @@ public class DonorRepository : IDonorRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteDonorAsync(int id)
     {
-        var donor = await GetByIdAsync(id);
+        var donor = await GetDonorByIdAsync(id);
         if (donor == null)
             throw new Exception("No Donor Found With Given Id");
 

@@ -27,7 +27,7 @@ public class DonationService : IDonationService
 
     public async Task AddDonationAsync(int donorId, decimal amount)
     {
-        var donor = await _donorService.GetByIdAsync(donorId);
+        var donor = await _donorService.GetDonorByIdAsync(donorId);
         
         if (donor == null)
         {
