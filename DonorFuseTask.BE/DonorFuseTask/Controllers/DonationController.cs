@@ -81,4 +81,11 @@ public class DonationController : ControllerBase
         var total = await _donationService.CalculateTotalDonationsByDonorIdAsync(donorId);
         return Ok(total);
     }
+    
+    [HttpGet("donor/{donorId}")]
+    public async Task<IActionResult> GetDonationsByDonorIdAsync(int donorId)
+    {
+        var donations = await _donationService.GetDonationsByDonorIdAsync(donorId);
+        return Ok(donations);
+    }
 }

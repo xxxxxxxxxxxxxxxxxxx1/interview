@@ -1,0 +1,8 @@
+<div
+  class="w-fit p-2 border-2 border-gray-300 flex flex-col items-center justify-center"
+>
+  <p class="italic">Schedule</p>
+  <p>{{ schedule.amount }}$</p>
+  <p><span class="italic">From: </span>{{ schedule.startDate | date }}</p>
+  <p><span class="italic">To: </span>{{ schedule.endDate | date }}</p>
+</div>

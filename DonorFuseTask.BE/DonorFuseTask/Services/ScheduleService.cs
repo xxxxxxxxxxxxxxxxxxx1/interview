@@ -21,21 +21,21 @@ public class ScheduleService : IScheduleService
 
     public async Task<Schedule?> GetScheduleByIdAsync(int id)
     {
-        return await _scheduleRepository.GetScheduleByIdAsync(id); 
+        return await _scheduleRepository.GetScheduleByIdAsync(id);
     }
 
-    public Task AddScheduleAsync(DateTime startDate, DateTime endDate, decimal amount, int donorId)
+    public async Task AddScheduleAsync(DateTime startDate, DateTime endDate, decimal amount, int donorId)
     {
         if (startDate > endDate)
         {
             throw new Exception("Start date cannot be greater than end date");
         }
-        
+
         if (amount <= 0)
         {
             throw new Exception("Amount must be greater than 0");
         }
-        
+
         var schedule = new Schedule
         {
             StartDate = startDate,
@@ -44,39 +44,39 @@ public class ScheduleService : IScheduleService
             DonorId = donorId
         };
 
-        return _scheduleRepository.AddScheduleAsync(schedule);
+        await _scheduleRepository.AddScheduleAsync(schedule);
     }
-    
-    public Task UpdateScheduleAsync(int id, DateTime startDate, DateTime endDate, decimal amount)
+
+    public async Task UpdateScheduleAsync(int id, DateTime startDate, DateTime endDate, decimal amount)
     {
         if (startDate > endDate)
         {
             throw new Exception("Start date cannot be greater than end date");
         }
-        
+
         if (amount <= 0)
         {
             throw new Exception("Amount must be greater than 0");
         }
-        
-        return _scheduleRepository.UpdateScheduleAsync(id, startDate, endDate, amount);
+
+        await _scheduleRepository.UpdateScheduleAsync(id, startDate, endDate, amount);
     }
 
-    public Task DeleteScheduleAsync(int id)
+    public async Task DeleteScheduleAsync(int id)
     {
-        return _scheduleRepository.DeleteScheduleAsync(id);
+        await _scheduleRepository.DeleteScheduleAsync(id);
     }
 
-    public Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId)
+    public async Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId)
     {
-        return _scheduleRepository.GetSchedulesByDonorIdAsync(donorId);
+        return await _scheduleRepository.GetSchedulesByDonorIdAsync(donorId);
     }
 
-    public Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId)
+    public async Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId)
     {
         var dateTimeNow = DateTime.Now;
         var donationDay = new DateTime(dateTimeNow.Year, dateTimeNow.Month, 1);
-        
-        return _scheduleRepository.CalculateScheduleDonationsAmountAsync(donorId, donationDay);
+
+        return await _scheduleRepository.CalculateScheduleDonationsAmountAsync(donorId, donationDay);
     }
 }

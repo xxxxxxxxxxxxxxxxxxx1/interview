@@ -8,20 +8,20 @@ namespace DonorFuseTask.Repositories;
 public class DonationRepository : IDonationRepository
 {
     private readonly ApplicationDbContext _dbContext;
-    
+
     public DonationRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<IEnumerable<Donation>> GetAllDonationsAsync()
     {
-        return await _dbContext.Donations.ToListAsync(); 
+        return await _dbContext.Donations.ToListAsync();
     }
 
     public async Task<Donation?> GetDonationByIdAsync(int id)
     {
-        return await _dbContext.Donations.FirstOrDefaultAsync(d => d.Id == id); 
+        return await _dbContext.Donations.FirstOrDefaultAsync(d => d.Id == id);
     }
 
     public async Task AddDonationAsync(Donation donation)
@@ -37,9 +37,9 @@ public class DonationRepository : IDonationRepository
         {
             throw new Exception("Donation not found");
         }
-        
+
         donation.Amount = ammount;
-       await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task DeleteDonationAsync(int id)
@@ -49,7 +49,7 @@ public class DonationRepository : IDonationRepository
         {
             throw new Exception("Donation not found");
         }
-        
+
         _dbContext.Donations.Remove(donation);
         await _dbContext.SaveChangesAsync();
     }
@@ -57,5 +57,10 @@ public class DonationRepository : IDonationRepository
     public Task<decimal> CalculateTotalDonationsByDonorIdAsync(int donorId)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync(int donorId)
+    {
+        return await _dbContext.Donations.Where(d => d.DonorId == donorId).ToListAsync();
     }
 }

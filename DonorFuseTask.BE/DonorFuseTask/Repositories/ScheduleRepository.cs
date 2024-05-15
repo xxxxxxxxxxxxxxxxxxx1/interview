@@ -30,40 +30,39 @@ public class ScheduleRepository : IScheduleRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public Task UpdateScheduleAsync(int id, DateTime startDate, DateTime endDate, decimal amount)
+    public async Task UpdateScheduleAsync(int id, DateTime startDate, DateTime endDate, decimal amount)
     {
         var schedule = _dbContext.Schedules.FirstOrDefault(s => s.Id == id);
         if (schedule == null)
         {
             throw new Exception("Schedule not found");
         }
-        
+
         schedule.StartDate = startDate;
         schedule.EndDate = endDate;
         schedule.Amount = amount;
-        return _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
     }
 
-    public Task DeleteScheduleAsync(int id)
+    public async Task DeleteScheduleAsync(int id)
     {
         var schedule = _dbContext.Schedules.FirstOrDefault(s => s.Id == id);
         if (schedule == null)
         {
             throw new Exception("Schedule not found");
         }
-        
+
         _dbContext.Schedules.Remove(schedule);
-        return _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId)
+    public async Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Schedules.Where(s => s.DonorId == donorId).ToListAsync();
     }
 
     public async Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId, DateTime donationDay)
     {
         return await _dbContext.GetDonorScheduledBalance(donorId, donationDay);
     }
-    
 }

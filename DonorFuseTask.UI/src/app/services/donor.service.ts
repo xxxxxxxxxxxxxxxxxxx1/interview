@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
+import { Donor } from '../interfaces/donor';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +9,7 @@ import { ApiService } from './api.service';
 export class DonorService {
   constructor(private apiService: ApiService) {}
 
-  getDonors() {
+  getDonors(): Observable<Donor[]> {
     return this.apiService.get('donor');
   }
 

@@ -10,4 +10,5 @@ public interface IDonationService
     Task UpdateDonationAsync(int id, decimal ammount);
     Task DeleteDonationAsync(int id);
     Task<decimal> CalculateTotalDonationsByDonorIdAsync(int donorId);
+    Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync(int donorId);
 }

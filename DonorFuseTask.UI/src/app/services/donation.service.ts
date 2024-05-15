@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
+import { Donation } from '../interfaces/donation';
 
 @Injectable({
   providedIn: 'root',
@@ -7,11 +9,11 @@ import { ApiService } from './api.service';
 export class DonationService {
   constructor(private apiService: ApiService) {}
 
-  getDonations() {
+  getDonations(): Observable<Donation[]> {
     return this.apiService.get('donation');
   }
 
-  getDonation(id: number) {
+  getDonation(id: number): Observable<Donation> {
     return this.apiService.get(`donation/${id}`);
   }
 
@@ -29,5 +31,9 @@ export class DonationService {
 
   getTotalDonationsForDonor(donorId: number) {
     return this.apiService.get(`donation/total/${donorId}`);
+  }
+
+  getDonationsByDonor(donorId: number): Observable<Donation[]> {
+    return this.apiService.get(`donation/donor/${donorId}`);
   }
 }

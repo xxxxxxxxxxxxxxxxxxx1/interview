@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
+import { Schedule } from '../interfaces/schedule';
 
 @Injectable({
   providedIn: 'root',
@@ -27,11 +29,11 @@ export class ScheduleService {
     return this.apiService.delete(`schedule/${id}`);
   }
 
-  getScheduleByDonorId(donorId: number) {
+  getScheduleByDonorId(donorId: number): Observable<Schedule[]> {
     return this.apiService.get(`schedule/donor/${donorId}`);
   }
 
-  getScheduleByDonorAmount(donorId: number) {
+  getScheduleByDonorAmount(donorId: number): Observable<number> {
     return this.apiService.get(`schedule/donor/${donorId}/amount`);
   }
 }

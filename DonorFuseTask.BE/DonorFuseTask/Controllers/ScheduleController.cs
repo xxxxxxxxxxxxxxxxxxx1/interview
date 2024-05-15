@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DonorFuseTask.Controllers;
 
-[Route("api/schedules")]
+[Route("api/schedule")]
 [ApiController]
 public class ScheduleController : ControllerBase
 {

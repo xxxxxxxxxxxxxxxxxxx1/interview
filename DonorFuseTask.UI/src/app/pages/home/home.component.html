@@ -10,15 +10,10 @@
       </button>
     </div>
     <div class="flex gap-4">
-      <div class="w-fit p-2 border-2 border-gray-300">
-        <p class="text-center italic">User</p>
-        <p>Faris Rizvanovic</p>
-      </div>
-
-      <div class="w-fit p-2 border-2 border-gray-300">
-        <p class="text-center italic">User</p>
-        <p>Faris Rizvanovic</p>
-      </div>
+      <app-donor-card
+        [donor]="donor"
+        *ngFor="let donor of donors"
+      ></app-donor-card>
     </div>
   </div>
 
@@ -33,15 +28,10 @@
       </button>
     </div>
     <div class="flex gap-4">
-      <div class="w-fit p-2 border-2 border-gray-300">
-        <p class="text-center italic">Donation</p>
-        <p>100$</p>
-      </div>
-
-      <div class="w-fit p-2 border-2 border-gray-300">
-        <p class="text-center italic">Donation</p>
-        <p>5$</p>
-      </div>
+      <app-donation-card
+        [donation]="donation"
+        *ngFor="let donation of donations"
+      ></app-donation-card>
     </div>
   </div>
 
@@ -56,14 +46,10 @@
       </button>
     </div>
     <div class="flex gap-4">
-      <div
-        class="w-fit p-2 border-2 border-gray-300 flex flex-col items-center justify-center"
-      >
-        <p class="italic">Schedule</p>
-        <p>10$</p>
-        <p><span class="italic">From:</span> 15.05.2024</p>
-        <p><span class="italic">To:</span> 15.06.2024</p>
-      </div>
+      <app-schedule-card
+        [schedule]="schedule"
+        *ngFor="let schedule of schedules"
+      ></app-schedule-card>
     </div>
   </div>
   <!-- REPORTS -->
@@ -74,8 +60,12 @@
       <p>0$</p>
     </div>
     <div class="flex gap-1">
-      <h1>Donations Total For Scheduled Donations:</h1>
-      <p>0</p>
+      <h1>Donations Total For Schedules:</h1>
+      <p>{{ 0 }}</p>
+    </div>
+    <div class="flex gap-1">
+      <h1>Donations Total For Selected Schedule:</h1>
+      <p>{{ donationsTotalForSchedule }}$</p>
     </div>
   </div>
 </div>

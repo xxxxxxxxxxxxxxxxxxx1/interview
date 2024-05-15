@@ -80,4 +80,9 @@ public class DonationService : IDonationService
     {
         return _donationRepository.CalculateTotalDonationsByDonorIdAsync(donorId);
     }
+
+    public async Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync(int donorId)
+    {
+        return await _donationRepository.GetDonationsByDonorIdAsync(donorId);
+    }
 }
