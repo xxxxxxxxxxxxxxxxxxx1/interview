@@ -14,6 +14,7 @@
         [donor]="donor"
         [selectedDonorId]="selectedDonorId"
         (selectedDonor)="selectDonor($event)"
+        (deletedDonor)="deleteDonor($event)"
         *ngFor="let donor of donors"
       ></app-donor-card>
     </div>
@@ -32,6 +33,7 @@
     <div class="flex gap-4">
       <app-donation-card
         [donation]="donation"
+        (deletedDonation)="deleteDonation($event)"
         *ngFor="let donation of donations"
       ></app-donation-card>
     </div>
@@ -52,6 +54,7 @@
         [schedule]="schedule"
         [selectedScheduleId]="selectedScheduleId"
         (selectedSchedule)="selectSchedule($event)"
+        (deletedSchedule)="deleteSchedule($event)"
         *ngFor="let schedule of schedules"
       ></app-schedule-card>
     </div>

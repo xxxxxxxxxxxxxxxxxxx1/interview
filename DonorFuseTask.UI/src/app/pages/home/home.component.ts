@@ -133,4 +133,22 @@ export class HomeComponent implements OnInit {
     this.selectedScheduleId = scheduleId;
     this.getDonationsTotalForSchedule(scheduleId);
   }
+
+  deleteDonor(donorId: number) {
+    this.donorService.deleteDonor(donorId).subscribe(() => {
+      this.getPageData();
+    });
+  }
+
+  deleteDonation(donationId: number) {
+    this.donationService.deleteDonation(donationId).subscribe(() => {
+      this.getPageData();
+    });
+  }
+
+  deleteSchedule(scheduleId: number) {
+    this.scheduleService.deleteSchedule(scheduleId).subscribe(() => {
+      this.getPageData();
+    });
+  }
 }

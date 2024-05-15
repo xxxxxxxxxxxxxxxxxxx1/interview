@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Donation } from '../../interfaces/donation';
 
 @Component({
@@ -10,6 +10,11 @@ import { Donation } from '../../interfaces/donation';
 })
 export class DonationCardComponent {
   @Input() donation!: Donation;
+  @Output() deletedDonation: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
+
+  deleteDonation(donationId: number) {
+    this.deletedDonation.emit(donationId);
+  }
 }

@@ -1,9 +1,14 @@
 <div
   [ngClass]="{ 'bg-green-100': selectedDonorId === donor.id }"
   (click)="selectDonor(donor.id)"
-  class="w-fit p-2 border-2 flex flex-col items-center justify-center cursor-pointer hover:bg-green-200 border-gray-300"
+  class="w-fit relative p-2 border-2 flex flex-col items-center justify-center cursor-pointer hover:bg-green-200 border-gray-300"
 >
   <p class="italic">Donor</p>
   <p>{{ donor.firstName + " " + donor.lastName }}</p>
   <p>{{ donor.emailAddress }}</p>
+  <span
+    (click)="deleteDonor(donor.id)"
+    class="absolute -right-3 -top-3 bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
+    >X</span
+  >
 </div>
