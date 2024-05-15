@@ -11,4 +11,5 @@ public interface IScheduleRepository
     Task DeleteScheduleAsync(int id);
     Task<IEnumerable<Schedule>> GetSchedulesByDonorIdAsync(int donorId);
     Task<decimal> CalculateScheduleDonationsAmountAsync(int donorId, DateTime donationDay);
+    Task<decimal> CalculateSingleScheduleDonationsAmountAsync(int donorId, int scheduleId, DateTime donationDay);
 }

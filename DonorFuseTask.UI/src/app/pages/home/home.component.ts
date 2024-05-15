@@ -89,7 +89,11 @@ export class HomeComponent implements OnInit {
   }
 
   getDonationsTotalForSchedule(scheduleId: number) {
-    // TODO: Implement this method
+    this.scheduleService
+      .getSingleScheduleDonorBalance(this.selectedDonorId, scheduleId)
+      .subscribe((amount) => {
+        this.donationsTotalForSchedule = amount;
+      });
   }
 
   getDonorDonationsTotalForAllSchedulesForDonor(donorId: number) {
@@ -141,6 +145,7 @@ export class HomeComponent implements OnInit {
   selectSchedule(scheduleId: number) {
     if (this.selectedScheduleId === scheduleId) {
       this.selectedScheduleId = 0;
+      this.donationsTotalForSchedule = 0;
       return;
     }
 

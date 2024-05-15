@@ -67,6 +67,35 @@ public class ApplicationDbContext : DbContext
 
         return totalDonationAmount;
     }
+    
+    public async Task<decimal> GetSingleScheduleDonorBalance(int donorId, int scheduleId, DateTime donationDay)
+    {
+        await using var connection = new MySqlConnection(this.Database.GetDbConnection().ConnectionString);
+        await connection.OpenAsync();
 
+        await using var command = connection.CreateCommand();
+        command.CommandType = CommandType.StoredProcedure;
+        command.CommandText = "GetSingleScheduleDonorBalance";
+
+        // Add input parameters
+        command.Parameters.AddWithValue("@p_DonorId", donorId);
+        command.Parameters.AddWithValue("@p_ScheduleId", scheduleId);
+        command.Parameters.AddWithValue("@p_DonationDay", donationDay);
+
+        // Add output parameter
+        var outputParameter = new MySqlParameter("@p_TotalDonationAmount", MySqlDbType.Decimal)
+        {
+            Direction = ParameterDirection.Output
+        };
+        command.Parameters.Add(outputParameter);
+
+        await command.ExecuteNonQueryAsync();
+
+        // Retrieve the output parameter value and handle potential DBNull
+        var outputValue = outputParameter.Value;
+        var totalDonationAmount = outputValue != DBNull.Value ? Convert.ToDecimal(outputValue) : 0m;
+
+        return totalDonationAmount;
+    }
 
 }

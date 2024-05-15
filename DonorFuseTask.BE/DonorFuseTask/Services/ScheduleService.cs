@@ -79,4 +79,12 @@ public class ScheduleService : IScheduleService
 
         return await _scheduleRepository.CalculateScheduleDonationsAmountAsync(donorId, donationDay);
     }
+
+    public async Task<decimal> CalculateSingleScheduleDonationsAmountAsync(int donorId, int scheduleId)
+    {
+        var dateTimeNow = DateTime.Now;
+        var donationDay = new DateTime(dateTimeNow.Year, dateTimeNow.Month, 1);
+        
+        return await _scheduleRepository.CalculateSingleScheduleDonationsAmountAsync(donorId, scheduleId, donationDay);
+    }
 }

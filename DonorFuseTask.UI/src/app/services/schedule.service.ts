@@ -36,4 +36,13 @@ export class ScheduleService {
   getScheduleByDonorAmount(donorId: number): Observable<number> {
     return this.apiService.get(`schedule/donor/${donorId}/amount`);
   }
+
+  getSingleScheduleDonorBalance(
+    donorId: number,
+    scheduleId: number
+  ): Observable<number> {
+    return this.apiService.get(
+      `schedule/${scheduleId}/donor/${donorId}/amount`
+    );
+  }
 }

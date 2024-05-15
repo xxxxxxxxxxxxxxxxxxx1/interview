@@ -65,4 +65,9 @@ public class ScheduleRepository : IScheduleRepository
     {
         return await _dbContext.GetDonorScheduledBalance(donorId, donationDay);
     }
+    
+    public async Task<decimal> CalculateSingleScheduleDonationsAmountAsync(int donorId, int scheduleId, DateTime donationDay)
+    {
+        return await _dbContext.GetSingleScheduleDonorBalance(donorId, scheduleId, donationDay);
+    }
 }
