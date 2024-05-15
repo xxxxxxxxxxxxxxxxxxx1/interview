@@ -13,7 +13,7 @@ export class DonorService {
     return this.apiService.get('donor');
   }
 
-  getDonor(id: number) {
+  getDonor(id: number): Observable<Donor> {
     return this.apiService.get(`donor/${id}`);
   }
 
@@ -21,7 +21,8 @@ export class DonorService {
     return this.apiService.post('donor', data);
   }
 
-  updateDonor(id: number, data: any) {
+  updateDonor(id: number, data: Donor) {
+    console.log(data);
     return this.apiService.put(`donor/${id}`, data);
   }
 

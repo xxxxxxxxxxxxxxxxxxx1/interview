@@ -15,6 +15,7 @@
         [donor]="donor"
         [selectedDonorId]="selectedDonorId"
         (selectedDonor)="selectDonor($event)"
+        (editedDonor)="openEditDonorModal($event)"
         (deletedDonor)="deleteDonor($event)"
         *ngFor="let donor of donors"
       ></app-donor-card>
@@ -80,6 +81,7 @@
   </div>
 
   <div>
+    <!-- ADD MODALS -->
     <app-add-donor-modal
       *ngIf="addDonorModalVisible"
       (modalClosed)="closeAddDonorModal()"
@@ -94,5 +96,12 @@
       [donorId]="selectedDonorId"
       (modalClosed)="closeAddScheduleModal()"
     ></app-add-schedule-modal>
+
+    <!-- EDIT MODALS -->
+    <app-edit-donor-modal
+      *ngIf="editDonorModalVisible"
+      [selectedDonorId]="selectedDonorId"
+      (modalClosed)="closeEditDonorModal()"
+    ></app-edit-donor-modal>
   </div>
 </div>

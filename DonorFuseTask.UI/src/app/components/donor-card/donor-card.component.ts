@@ -14,12 +14,17 @@ export class DonorCardComponent {
   @Input() donor!: Donor;
   @Input() selectedDonorId!: number;
   @Output() selectedDonor: EventEmitter<number> = new EventEmitter<number>();
+  @Output() editedDonor: EventEmitter<number> = new EventEmitter<number>();
   @Output() deletedDonor: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
 
   selectDonor(donorId: number) {
     this.selectedDonor.emit(donorId);
+  }
+
+  editDonor(donorId: number) {
+    this.editedDonor.emit(donorId);
   }
 
   deleteDonor(donorId: number) {

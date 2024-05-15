@@ -6,9 +6,16 @@
   <p class="italic">Donor</p>
   <p>{{ donor.firstName + " " + donor.lastName }}</p>
   <p>{{ donor.emailAddress }}</p>
-  <span
-    (click)="deleteDonor(donor.id!)"
-    class="absolute -right-3 -top-3 bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
-    >X</span
-  >
+  <div class="absolute -right-3 -top-3 flex gap-1">
+    <span
+      (click)="editDonor(donor.id!)"
+      class="bg-green-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-green-600 z-10"
+      >E</span
+    >
+    <span
+      (click)="deleteDonor(donor.id!)"
+      class="\ bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
+      >X</span
+    >
+  </div>
 </div>
