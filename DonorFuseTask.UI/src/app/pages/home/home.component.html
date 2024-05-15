@@ -4,7 +4,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Donors</h1>
       <button
-        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold hover:cursor-pointer hover:bg-green-600"
+        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
       </button>
@@ -24,7 +24,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Donations</h1>
       <button
-        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold hover:cursor-pointer hover:bg-green-600"
+        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
       </button>
@@ -42,7 +42,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Schedules</h1>
       <button
-        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold hover:cursor-pointer hover:bg-green-600"
+        class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
       </button>
@@ -50,6 +50,8 @@
     <div class="flex gap-4">
       <app-schedule-card
         [schedule]="schedule"
+        [selectedScheduleId]="selectedScheduleId"
+        (selectedSchedule)="selectSchedule($event)"
         *ngFor="let schedule of schedules"
       ></app-schedule-card>
     </div>

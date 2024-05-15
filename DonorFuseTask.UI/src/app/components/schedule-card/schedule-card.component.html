@@ -1,5 +1,7 @@
 <div
-  class="w-fit p-2 border-2 border-gray-300 flex flex-col items-center justify-center"
+  [ngClass]="{ 'bg-green-100': selectedScheduleId === schedule.id }"
+  (click)="selectSchedule(schedule.id)"
+  class="w-fit p-2 border-2 border-gray-300 hover:bg-green-200 cursor-pointer flex flex-col items-center justify-center"
 >
   <p class="italic">Schedule</p>
   <p>{{ schedule.amount }}$</p>

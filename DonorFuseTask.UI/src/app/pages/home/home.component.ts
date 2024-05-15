@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
   donations: Donation[] = [];
   schedules: Schedule[] = [];
 
-  selectedDonorId: number = 1;
-  selectedScheduleId: number = 1;
+  selectedDonorId: number = 0;
+  selectedScheduleId: number = 0;
 
   donationsTotal: number = 0;
   donationsTotalForSchedule: number = 0;
@@ -58,12 +58,20 @@ export class HomeComponent implements OnInit {
   }
 
   getDonorDonations(donorId: number) {
+    if (donorId === 0) {
+      this.donations = [];
+      return;
+    }
     this.donationService.getDonationsByDonor(donorId).subscribe((data) => {
       this.donations = data;
     });
   }
 
   getSchedules(donorId: number) {
+    if (donorId === 0) {
+      this.schedules = [];
+      return;
+    }
     this.scheduleService.getScheduleByDonorId(donorId).subscribe((data) => {
       this.schedules = data;
     });
@@ -83,6 +91,10 @@ export class HomeComponent implements OnInit {
   }
 
   getDonorDonationsTotal(donorId: number) {
+    if (donorId === 0) {
+      this.donationsTotal = 0;
+      return;
+    }
     this.donationService
       .getTotalDonationsForDonor(donorId)
       .subscribe((data) => {
@@ -91,6 +103,16 @@ export class HomeComponent implements OnInit {
   }
 
   selectDonor(donorId: number) {
+    if (this.selectedDonorId === donorId) {
+      this.selectedDonorId = 0;
+      this.selectedScheduleId = 0;
+      this.donations = [];
+      this.schedules = [];
+      this.donationsTotal = 0;
+      this.donationsTotalForSchedule = 0;
+      return;
+    }
+
     this.selectedDonorId = donorId;
 
     this.selectedScheduleId = 0;
@@ -101,8 +123,14 @@ export class HomeComponent implements OnInit {
     this.getDonationsTotalForSchedule(this.selectedScheduleId);
   }
 
-  selectSchedule(schedule: Schedule) {
-    this.selectedScheduleId = schedule.id;
-    this.getDonationsTotalForSchedule(schedule.id);
+  selectSchedule(scheduleId: number) {
+    if (this.selectedScheduleId === scheduleId) {
+      this.selectedScheduleId = 0;
+      this.donationsTotalForSchedule = 0;
+      return;
+    }
+
+    this.selectedScheduleId = scheduleId;
+    this.getDonationsTotalForSchedule(scheduleId);
   }
 }

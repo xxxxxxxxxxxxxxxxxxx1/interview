@@ -1,7 +1,7 @@
 <div
   [ngClass]="{ 'bg-green-100': selectedDonorId === donor.id }"
   (click)="selectDonor(donor.id)"
-  class="w-fit p-2 border-2 flex flex-col items-center justify-center hover:cursor-pointer hover:bg-green-200 border-gray-300"
+  class="w-fit p-2 border-2 flex flex-col items-center justify-center cursor-pointer hover:bg-green-200 border-gray-300"
 >
   <p class="italic">Donor</p>
   <p>{{ donor.firstName + " " + donor.lastName }}</p>

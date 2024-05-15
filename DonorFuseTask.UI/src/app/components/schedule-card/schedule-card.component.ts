@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { Schedule } from '../../interfaces/schedule';
 import { CommonModule } from '@angular/common';
 
@@ -11,6 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ScheduleCardComponent {
   @Input() schedule!: Schedule;
+  @Input() selectedScheduleId!: number;
+  @Output() selectedSchedule: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
+
+  selectSchedule(scheduleId: number) {
+    this.selectedSchedule.emit(scheduleId);
+  }
 }
