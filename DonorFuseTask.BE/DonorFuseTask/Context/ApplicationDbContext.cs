@@ -39,20 +39,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<Schedule> Schedules { get; set; }
     
     // Stored procedures
-    // public async Task<decimal> GetDonorScheduledBalance(int donorId, DateTime donationDay)
-    // {
-    //     var result = await this.Database
-    //         .ExecuteSqlRawAsync("CALL GetDonorScheduledBalance({0}, {1})", donorId, donationDay);
-    //     
-    //     return Convert.ToDecimal(result);
-    // }
-    
     public async Task<decimal> GetDonorScheduledBalance(int donorId, DateTime donationDay)
     {
-        using var connection = new MySqlConnection(this.Database.GetDbConnection().ConnectionString);
+        await using var connection = new MySqlConnection(this.Database.GetDbConnection().ConnectionString);
         await connection.OpenAsync();
 
-        using var command = connection.CreateCommand();
+        await using var command = connection.CreateCommand();
         command.CommandType = CommandType.StoredProcedure;
         command.CommandText = "GetDonorScheduledBalance";
 
@@ -69,10 +61,12 @@ public class ApplicationDbContext : DbContext
 
         await command.ExecuteNonQueryAsync();
 
-        // Retrieve the output parameter value
-        var totalDonationAmount = Convert.ToDecimal(outputParameter.Value);
+        // Retrieve the output parameter value and handle potential DBNull
+        var outputValue = outputParameter.Value;
+        var totalDonationAmount = outputValue != DBNull.Value ? Convert.ToDecimal(outputValue) : 0m;
 
         return totalDonationAmount;
     }
+
 
 }

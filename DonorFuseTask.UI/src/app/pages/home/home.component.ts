@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   selectedScheduleId: number = 0;
 
   donationsTotal: number = 0;
+  donationsTotalForSchedules: number = 0;
   donationsTotalForSchedule: number = 0;
 
   addDonorModalVisible: boolean = false;
@@ -58,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.getDonorDonations(this.selectedDonorId);
     this.getSchedules(this.selectedDonorId);
     this.getDonorDonationsTotal(this.selectedDonorId);
-    this.getDonationsTotalForSchedule(this.selectedScheduleId);
+    this.getDonorDonationsTotalForAllSchedulesForDonor(this.selectedDonorId);
   }
 
   getDonors() {
@@ -88,15 +89,19 @@ export class HomeComponent implements OnInit {
   }
 
   getDonationsTotalForSchedule(scheduleId: number) {
-    if (scheduleId === 0) {
-      this.donationsTotalForSchedule = 0;
+    // TODO: Implement this method
+  }
+
+  getDonorDonationsTotalForAllSchedulesForDonor(donorId: number) {
+    if (donorId === 0) {
+      this.donationsTotalForSchedules = 0;
       return;
     }
 
     this.scheduleService
-      .getScheduleByDonorAmount(scheduleId)
+      .getScheduleByDonorAmount(donorId)
       .subscribe((amount) => {
-        this.donationsTotalForSchedule = amount;
+        this.donationsTotalForSchedules = amount;
       });
   }
 
@@ -130,13 +135,12 @@ export class HomeComponent implements OnInit {
     this.getDonorDonations(donorId);
     this.getSchedules(donorId);
     this.getDonorDonationsTotal(donorId);
-    this.getDonationsTotalForSchedule(this.selectedScheduleId);
+    this.getDonorDonationsTotalForAllSchedulesForDonor(donorId);
   }
 
   selectSchedule(scheduleId: number) {
     if (this.selectedScheduleId === scheduleId) {
       this.selectedScheduleId = 0;
-      this.donationsTotalForSchedule = 0;
       return;
     }
 
