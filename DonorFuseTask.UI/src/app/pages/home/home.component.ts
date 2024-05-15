@@ -13,6 +13,7 @@ import { AddDonorModalComponent } from '../../components/add-donor-modal/add-don
 import { AddDonationModalComponent } from '../../components/add-donation-modal/add-donation-modal.component';
 import { AddScheduleModalComponent } from '../../components/add-schedule-modal/add-schedule-modal.component';
 import { EditDonorModalComponent } from '../../components/edit-donor-modal/edit-donor-modal.component';
+import { EditDonationModalComponent } from '../../components/edit-donation-modal/edit-donation-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ import { EditDonorModalComponent } from '../../components/edit-donor-modal/edit-
     AddDonationModalComponent,
     AddScheduleModalComponent,
     EditDonorModalComponent,
+    EditDonationModalComponent,
   ],
 })
 export class HomeComponent implements OnInit {
@@ -215,6 +217,19 @@ export class HomeComponent implements OnInit {
 
   closeEditDonorModal() {
     this.editDonorModalVisible = false;
+    this.getPageData();
+  }
+
+  editDonationModalVisible: boolean = false;
+  selectedDonationId: number = 0;
+
+  openEditDonationModal(donationId: number) {
+    this.selectedDonationId = donationId;
+    this.editDonationModalVisible = true;
+  }
+
+  closeEditDonationModal() {
+    this.editDonationModalVisible = false;
     this.getPageData();
   }
 }

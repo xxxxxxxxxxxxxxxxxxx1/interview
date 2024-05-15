@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './edit-donor-modal.component.css',
 })
 export class EditDonorModalComponent implements OnInit {
-  @Input() selectedDonorId: number = 0;
+  @Input() donorId: number = 0;
   @Output() modalClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
   donorForm!: FormGroup;
 
@@ -42,8 +42,8 @@ export class EditDonorModalComponent implements OnInit {
   }
 
   getDonor() {
-    this.donorService.getDonor(this.selectedDonorId).subscribe((donor) => {
-      this.selectedDonorId = donor.id!;
+    this.donorService.getDonor(this.donorId).subscribe((donor) => {
+      this.donorId = donor.id!;
       this.donorForm.patchValue({
         firstName: donor.firstName,
         lastName: donor.lastName,
@@ -53,7 +53,7 @@ export class EditDonorModalComponent implements OnInit {
   }
 
   saveDonor() {
-    if (this.donorForm.invalid || this.selectedDonorId === 0) {
+    if (this.donorForm.invalid || this.donorId === 0) {
       return;
     }
 
@@ -63,7 +63,7 @@ export class EditDonorModalComponent implements OnInit {
       emailAddress: this.donorForm.value.email,
     };
 
-    this.donorService.updateDonor(this.selectedDonorId, donor).subscribe(() => {
+    this.donorService.updateDonor(this.donorId, donor).subscribe(() => {
       this.closeModal();
     });
   }

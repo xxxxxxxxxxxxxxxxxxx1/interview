@@ -10,9 +10,14 @@ import { Donation } from '../../interfaces/donation';
 })
 export class DonationCardComponent {
   @Input() donation!: Donation;
+  @Output() editedDonation: EventEmitter<number> = new EventEmitter<number>();
   @Output() deletedDonation: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
+
+  editDonation(donationId: number) {
+    this.editedDonation.emit(donationId);
+  }
 
   deleteDonation(donationId: number) {
     this.deletedDonation.emit(donationId);

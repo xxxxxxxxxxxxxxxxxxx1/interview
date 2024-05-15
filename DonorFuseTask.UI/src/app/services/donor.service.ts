@@ -22,7 +22,6 @@ export class DonorService {
   }
 
   updateDonor(id: number, data: Donor) {
-    console.log(data);
     return this.apiService.put(`donor/${id}`, data);
   }
 

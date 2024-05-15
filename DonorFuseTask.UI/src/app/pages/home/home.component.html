@@ -36,6 +36,7 @@
     <div class="flex gap-4">
       <app-donation-card
         [donation]="donation"
+        (editedDonation)="openEditDonationModal($event)"
         (deletedDonation)="deleteDonation($event)"
         *ngFor="let donation of donations"
       ></app-donation-card>
@@ -100,8 +101,13 @@
     <!-- EDIT MODALS -->
     <app-edit-donor-modal
       *ngIf="editDonorModalVisible"
-      [selectedDonorId]="selectedDonorId"
+      [donorId]="selectedDonorId"
       (modalClosed)="closeEditDonorModal()"
     ></app-edit-donor-modal>
+    <app-edit-donation-modal
+      *ngIf="editDonationModalVisible"
+      [donationId]="selectedDonationId"
+      (modalClosed)="closeEditDonationModal()"
+    ></app-edit-donation-modal>
   </div>
 </div>

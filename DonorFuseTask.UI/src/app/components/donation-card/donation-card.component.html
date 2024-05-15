@@ -3,9 +3,17 @@
 >
   <p class="italic">Donation</p>
   <p>{{ donation.amount }}$</p>
-  <span
-    (click)="deleteDonation(donation.id)"
-    class="absolute -right-3 -top-3 bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
-    >X</span
-  >
+
+  <div class="absolute -right-3 -top-3 flex gap-1">
+    <span
+      (click)="editDonation(donation.id!)"
+      class="bg-green-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-green-600 z-10"
+      >E</span
+    >
+    <span
+      (click)="deleteDonation(donation.id!)"
+      class="\ bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
+      >X</span
+    >
+  </div>
 </div>

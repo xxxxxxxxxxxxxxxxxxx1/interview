@@ -25,8 +25,8 @@ export class DonationService {
     return this.apiService.post(`donation/${donorId}/${amount}`, {});
   }
 
-  updateDonation(id: number, data: any) {
-    return this.apiService.put(`donation/${id}`, data);
+  updateDonation(id: number, ammount: number) {
+    return this.apiService.put(`donation/${id}/${ammount}`, {});
   }
 
   getTotalDonationsForDonor(donorId: number): Observable<number> {
