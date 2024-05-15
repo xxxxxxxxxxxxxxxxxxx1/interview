@@ -13,7 +13,7 @@ export class ScheduleService {
     return this.apiService.get('schedule');
   }
 
-  addSchedule(data: any) {
+  addSchedule(data: Schedule) {
     return this.apiService.post('schedule', data);
   }
 

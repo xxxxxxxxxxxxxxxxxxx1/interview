@@ -86,10 +86,12 @@
     ></app-add-donor-modal>
     <app-add-donation-modal
       *ngIf="addDonationModalVisible"
+      [donorId]="selectedDonorId"
       (modalClosed)="closeAddDonationModal()"
     ></app-add-donation-modal>
     <app-add-schedule-modal
       *ngIf="addScheduleModalVisible"
+      [donorId]="selectedDonorId"
       (modalClosed)="closeAddScheduleModal()"
     ></app-add-schedule-modal>
   </div>

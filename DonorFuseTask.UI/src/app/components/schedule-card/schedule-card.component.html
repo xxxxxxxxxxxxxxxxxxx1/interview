@@ -1,6 +1,6 @@
 <div
   [ngClass]="{ 'bg-green-100': selectedScheduleId === schedule.id }"
-  (click)="selectSchedule(schedule.id)"
+  (click)="selectSchedule(schedule.id!)"
   class="w-fit relative p-2 border-2 border-gray-300 hover:bg-green-200 cursor-pointer flex flex-col items-center justify-center"
 >
   <p class="italic">Schedule</p>
@@ -8,7 +8,7 @@
   <p><span class="italic">From: </span>{{ schedule.startDate | date }}</p>
   <p><span class="italic">To: </span>{{ schedule.endDate | date }}</p>
   <span
-    (click)="deleteSchedule(schedule.id)"
+    (click)="deleteSchedule(schedule.id!)"
     class="absolute -right-3 -top-3 bg-red-500 text-white rounded-full px-1.5 cursor-pointer hover:bg-red-600 z-10"
     >X</span
   >

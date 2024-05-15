@@ -95,8 +95,8 @@ export class HomeComponent implements OnInit {
 
     this.scheduleService
       .getScheduleByDonorAmount(scheduleId)
-      .subscribe((data) => {
-        this.donationsTotalForSchedule = data;
+      .subscribe((amount) => {
+        this.donationsTotalForSchedule = amount;
       });
   }
 
@@ -172,6 +172,9 @@ export class HomeComponent implements OnInit {
   }
 
   openAddDonationModal() {
+    if (this.selectedDonorId === 0) {
+      return;
+    }
     this.addDonationModalVisible = true;
   }
 
@@ -181,6 +184,9 @@ export class HomeComponent implements OnInit {
   }
 
   openAddScheduleModal() {
+    if (this.selectedDonorId === 0) {
+      return;
+    }
     this.addScheduleModalVisible = true;
   }
 

@@ -1,5 +1,5 @@
 export interface Schedule {
-  id: number;
+  id?: number;
   startDate: Date;
   endDate: Date;
   amount: number;
