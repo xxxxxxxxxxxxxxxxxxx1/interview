@@ -54,9 +54,9 @@ public class DonationRepository : IDonationRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public Task<decimal> CalculateTotalDonationsByDonorIdAsync(int donorId)
+    public async Task<decimal> CalculateTotalDonationsByDonorIdAsync(int donorId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.Donations.Where(d => d.DonorId == donorId).SumAsync(d => d.Amount);
     }
 
     public async Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync(int donorId)

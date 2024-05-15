@@ -29,7 +29,7 @@ export class DonationService {
     return this.apiService.put(`donation/${id}`, data);
   }
 
-  getTotalDonationsForDonor(donorId: number) {
+  getTotalDonationsForDonor(donorId: number): Observable<number> {
     return this.apiService.get(`donation/total/${donorId}`);
   }
 

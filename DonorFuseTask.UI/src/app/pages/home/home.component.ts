@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   selectedDonorId: number = 1;
   selectedScheduleId: number = 1;
 
+  donationsTotal: number = 0;
   donationsTotalForSchedule: number = 0;
 
   constructor(
@@ -39,9 +40,14 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getPageData();
+  }
+
+  getPageData() {
     this.getDonors();
     this.getDonorDonations(this.selectedDonorId);
     this.getSchedules(this.selectedDonorId);
+    this.getDonorDonationsTotal(this.selectedDonorId);
     this.getDonationsTotalForSchedule(this.selectedScheduleId);
   }
 
@@ -64,6 +70,11 @@ export class HomeComponent implements OnInit {
   }
 
   getDonationsTotalForSchedule(scheduleId: number) {
+    if (scheduleId === 0) {
+      this.donationsTotalForSchedule = 0;
+      return;
+    }
+
     this.scheduleService
       .getScheduleByDonorAmount(scheduleId)
       .subscribe((data) => {
@@ -71,9 +82,23 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  selectDonor(donor: Donor) {
-    this.selectedDonorId = donor.id;
-    this.getDonorDonations(donor.id);
+  getDonorDonationsTotal(donorId: number) {
+    this.donationService
+      .getTotalDonationsForDonor(donorId)
+      .subscribe((data) => {
+        this.donationsTotal = data;
+      });
+  }
+
+  selectDonor(donorId: number) {
+    this.selectedDonorId = donorId;
+
+    this.selectedScheduleId = 0;
+
+    this.getDonorDonations(donorId);
+    this.getSchedules(donorId);
+    this.getDonorDonationsTotal(donorId);
+    this.getDonationsTotalForSchedule(this.selectedScheduleId);
   }
 
   selectSchedule(schedule: Schedule) {

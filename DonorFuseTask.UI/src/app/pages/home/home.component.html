@@ -12,6 +12,8 @@
     <div class="flex gap-4">
       <app-donor-card
         [donor]="donor"
+        [selectedDonorId]="selectedDonorId"
+        (selectedDonor)="selectDonor($event)"
         *ngFor="let donor of donors"
       ></app-donor-card>
     </div>
@@ -57,7 +59,7 @@
     <h1 class="text-3xl font-normal">Reports</h1>
     <div class="flex gap-1">
       <h1>Donations Total:</h1>
-      <p>0$</p>
+      <p>{{ donationsTotal }}$</p>
     </div>
     <div class="flex gap-1">
       <h1>Donations Total For Schedules:</h1>
