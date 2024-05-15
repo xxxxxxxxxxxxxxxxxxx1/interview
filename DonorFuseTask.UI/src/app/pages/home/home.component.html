@@ -4,6 +4,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Donors</h1>
       <button
+        (click)="openAddDonorModal()"
         class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
@@ -25,6 +26,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Donations</h1>
       <button
+        (click)="openAddDonationModal()"
         class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
@@ -44,6 +46,7 @@
     <div class="flex gap-1">
       <h1 class="text-3xl font-normal">Schedules</h1>
       <button
+        (click)="openAddScheduleModal()"
         class="bg-green-500 rounded-full py-1 px-3 text-center text-md text-white font-semibold cursor-pointer hover:bg-green-600"
       >
         Click to add
@@ -74,5 +77,20 @@
       <h1>Donations Total For Selected Schedule:</h1>
       <p>{{ donationsTotalForSchedule }}$</p>
     </div>
+  </div>
+
+  <div>
+    <app-add-donor-modal
+      *ngIf="addDonorModalVisible"
+      (modalClosed)="closeAddDonorModal()"
+    ></app-add-donor-modal>
+    <app-add-donation-modal
+      *ngIf="addDonationModalVisible"
+      (modalClosed)="closeAddDonationModal()"
+    ></app-add-donation-modal>
+    <app-add-schedule-modal
+      *ngIf="addScheduleModalVisible"
+      (modalClosed)="closeAddScheduleModal()"
+    ></app-add-schedule-modal>
   </div>
 </div>

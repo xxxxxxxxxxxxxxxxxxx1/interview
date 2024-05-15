@@ -9,18 +9,24 @@ import { Donation } from '../../interfaces/donation';
 import { DonationService } from '../../services/donation.service';
 import { Schedule } from '../../interfaces/schedule';
 import { ScheduleService } from '../../services/schedule.service';
+import { AddDonorModalComponent } from '../../components/add-donor-modal/add-donor-modal.component';
+import { AddDonationModalComponent } from '../../components/add-donation-modal/add-donation-modal.component';
+import { AddScheduleModalComponent } from '../../components/add-schedule-modal/add-schedule-modal.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
   imports: [
     DonorCardComponent,
     DonationCardComponent,
     ScheduleCardComponent,
     CommonModule,
+    AddDonorModalComponent,
+    AddDonationModalComponent,
+    AddScheduleModalComponent,
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   donors: Donor[] = [];
@@ -32,6 +38,10 @@ export class HomeComponent implements OnInit {
 
   donationsTotal: number = 0;
   donationsTotalForSchedule: number = 0;
+
+  addDonorModalVisible: boolean = false;
+  addDonationModalVisible: boolean = false;
+  addScheduleModalVisible: boolean = false;
 
   constructor(
     private donorService: DonorService,
@@ -150,5 +160,32 @@ export class HomeComponent implements OnInit {
     this.scheduleService.deleteSchedule(scheduleId).subscribe(() => {
       this.getPageData();
     });
+  }
+
+  openAddDonorModal() {
+    this.addDonorModalVisible = true;
+  }
+
+  closeAddDonorModal() {
+    this.addDonorModalVisible = false;
+    this.getPageData();
+  }
+
+  openAddDonationModal() {
+    this.addDonationModalVisible = true;
+  }
+
+  closeAddDonationModal() {
+    this.addDonationModalVisible = false;
+    this.getPageData();
+  }
+
+  openAddScheduleModal() {
+    this.addScheduleModalVisible = true;
+  }
+
+  closeAddScheduleModal() {
+    this.addScheduleModalVisible = false;
+    this.getPageData();
   }
 }
