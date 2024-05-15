@@ -59,6 +59,7 @@
         [schedule]="schedule"
         [selectedScheduleId]="selectedScheduleId"
         (selectedSchedule)="selectSchedule($event)"
+        (editedSchedule)="openEditScheduleModal($event)"
         (deletedSchedule)="deleteSchedule($event)"
         *ngFor="let schedule of schedules"
       ></app-schedule-card>
@@ -109,5 +110,10 @@
       [donationId]="selectedDonationId"
       (modalClosed)="closeEditDonationModal()"
     ></app-edit-donation-modal>
+    <app-edit-schedule-modal
+      *ngIf="editScheduleModalVisible"
+      [scheduleId]="selectedScheduleId"
+      (modalClosed)="closeEditScheduleModal()"
+    ></app-edit-schedule-modal>
   </div>
 </div>

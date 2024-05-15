@@ -17,7 +17,7 @@ export class ScheduleService {
     return this.apiService.post('schedule', data);
   }
 
-  getSchedule(id: number) {
+  getSchedule(id: number): Observable<Schedule> {
     return this.apiService.get(`schedule/${id}`);
   }
 

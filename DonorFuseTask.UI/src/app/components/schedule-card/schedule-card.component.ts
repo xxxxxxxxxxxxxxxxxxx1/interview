@@ -13,12 +13,17 @@ export class ScheduleCardComponent {
   @Input() schedule!: Schedule;
   @Input() selectedScheduleId!: number;
   @Output() selectedSchedule: EventEmitter<number> = new EventEmitter<number>();
+  @Output() editedSchedule: EventEmitter<number> = new EventEmitter<number>();
   @Output() deletedSchedule: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
 
   selectSchedule(scheduleId: number) {
     this.selectedSchedule.emit(scheduleId);
+  }
+
+  editSchedule(scheduleId: number) {
+    this.editedSchedule.emit(scheduleId);
   }
 
   deleteSchedule(scheduleId: number) {

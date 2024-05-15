@@ -3,5 +3,5 @@ export interface Schedule {
   startDate: Date;
   endDate: Date;
   amount: number;
-  donorId: number;
+  donorId?: number;
 }
